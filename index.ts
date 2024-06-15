@@ -7,12 +7,12 @@ function sleep(seconds: number) {
   return new Promise(resolve => setTimeout(resolve, seconds * 1000))
 }
 
-const keepAwake = async (url: string) => {
+const keepAwake: Function = async (url: string): Promise<void> => {
   console.log("starting keep awake...")
   while (true) {
-    const start = +new Date()
+    const start: number = +new Date()
     await axios.get(url)
-    const end = +new Date()
+    const end: number = +new Date()
     console.log("[SERVER]: " + url)
     console.log("[DELAY]: " + process.env.DELAY+ " seconds")
     console.log("[RESPONSE_TIME]:", (end-start)/1000, "seconds")
